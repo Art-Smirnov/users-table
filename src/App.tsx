@@ -1,9 +1,11 @@
-import React from 'react';
+import UsersTable from './components/UsersTable';
 
 function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline text-red-600">asd</h1>
+    <div className="p-8 mx-auto max-w-[1256px] min-w-5xl">
+      <div className="">
+        <UsersTable />
+      </div>
     </div>
   );
 }

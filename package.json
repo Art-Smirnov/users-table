@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^5.62.0",
+    "daisyui": "^3.7.0",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",

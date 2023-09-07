@@ -1,7 +1,7 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { useEffect } from 'react';
-import { fetchUsers } from '../../store/users/usersSlice';
+import { fetchUsersThunk } from '../../store/users/usersSlice';
 import { format, parseISO } from 'date-fns';
 // @ts-ignore
 import { ReactComponent as MaleIcon } from '../../icons/male.svg';
@@ -15,7 +15,7 @@ const UsersTable = () => {
 
   useEffect(() => {
     // @ts-ignore
-    dispatch(fetchUsers());
+    dispatch(fetchUsersThunk());
   }, [dispatch]);
 
   function capitalizeFirstLetter(str: string) {

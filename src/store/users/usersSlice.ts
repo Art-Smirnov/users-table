@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { UsersDataType, UserType } from '../../types/usersTypes';
+import { createSlice } from '@reduxjs/toolkit';
+import { UserType } from '../../types/usersTypes';
+import { fetchUsersThunk } from './usersThunks';
 
 const initialState: {
   users: UserType[];
@@ -12,38 +12,26 @@ const initialState: {
   error: null
 };
 
-const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-  // eslint-disable-next-line no-useless-catch
-  try {
-    const response = await axios.get('https://dummyjson.com/users?limit=10');
-    // console.log(response.data);
-    // eslint-disable-next-line no-undef
-    return response.data as UsersDataType;
-  } catch (error) {
-    throw error;
-  }
-});
-
 const userSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUsers.pending, (state) => {
+      .addCase(fetchUsersThunk.pending, (state) => {
         state.loading = 'pending';
       })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
+      .addCase(fetchUsersThunk.fulfilled, (state, action) => {
         state.loading = 'succeeded';
         state.users = action.payload.users;
       })
-      .addCase(fetchUsers.rejected, (state, action) => {
+      .addCase(fetchUsersThunk.rejected, (state, action) => {
         state.loading = 'failed';
         state.error = action.error.message || 'An error occurred.';
       });
   }
 });
 
-export { fetchUsers };
+export { fetchUsersThunk };
 
 export default userSlice.reducer;

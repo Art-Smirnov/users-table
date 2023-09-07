@@ -15,7 +15,7 @@ export const searchUsersThunk = createAsyncThunk(
   async (query: string) => {
     try {
       const response = await axios.get(
-        `https://dummyjson.com/users/search?q=${query}`
+        `https://dummyjson.com/users/search?q=${query}&limit=10`
       );
       return response.data as UsersDataType;
     } catch (error) {

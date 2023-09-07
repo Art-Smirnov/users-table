@@ -1,11 +1,16 @@
 // @ts-ignore
 import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
-import React, { useState } from 'react';
+import React from 'react';
+import { fetchUsersThunk } from '../../store/users/usersThunks';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../../store/store';
+import { SelectLimit } from '../../store/users/usersSelectors';
 
 const ItemsPerPageBtn = () => {
-  const [selectedOption, setSelectedOption] = useState(10);
+  const dispatch = useDispatch<AppDispatch>();
+  const limit = useSelector(SelectLimit);
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption(Number(event.target.value));
+    dispatch(fetchUsersThunk(Number(event.target.value)));
   };
 
   return (
@@ -26,7 +31,7 @@ const ItemsPerPageBtn = () => {
               <input
                 type="checkbox"
                 value={10}
-                checked={selectedOption === 10}
+                checked={limit === 10}
                 onChange={handleOptionChange}
               />
             </label>
@@ -37,7 +42,7 @@ const ItemsPerPageBtn = () => {
               <input
                 type="checkbox"
                 value={20}
-                checked={selectedOption === 20}
+                checked={limit === 20}
                 onChange={handleOptionChange}
               />
             </label>
@@ -49,7 +54,7 @@ const ItemsPerPageBtn = () => {
               <input
                 type="checkbox"
                 value={50}
-                checked={selectedOption === 50}
+                checked={limit === 50}
                 onChange={handleOptionChange}
               />
             </label>

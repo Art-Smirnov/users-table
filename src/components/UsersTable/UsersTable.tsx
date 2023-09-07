@@ -1,7 +1,4 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store/store';
-import { fetchUsersThunk } from '../../store/users/usersSlice';
+import { useSelector } from 'react-redux';
 import { format, parseISO } from 'date-fns';
 // @ts-ignore
 import { ReactComponent as MaleIcon } from '../../icons/male.svg';
@@ -9,14 +6,10 @@ import { ReactComponent as MaleIcon } from '../../icons/male.svg';
 import { ReactComponent as FemaleIcon } from '../../icons/female.svg';
 import TableHead from './TableHead';
 import TableFooter from './TableFooter';
+import { selectUsers } from '../../store/users/usersSelectors';
 
 const UsersTable = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { users } = useSelector((state: RootState) => state?.users);
-
-  useEffect(() => {
-    dispatch(fetchUsersThunk(10));
-  }, [dispatch]);
+  const { users } = useSelector(selectUsers);
 
   function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);

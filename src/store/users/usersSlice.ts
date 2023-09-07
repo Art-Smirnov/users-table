@@ -23,6 +23,7 @@ const userSlice = createSlice({
       .addCase(fetchUsersThunk.fulfilled, (state, action) => {
         state.loading = 'succeeded';
         state.users = action.payload.users;
+        state.limit = action.payload.limit;
       })
       .addCase(fetchUsersThunk.rejected, (state, action) => {
         state.loading = 'failed';

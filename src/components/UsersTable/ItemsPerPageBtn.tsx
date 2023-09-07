@@ -1,6 +1,6 @@
+import React from 'react';
 // @ts-ignore
 import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
-import React from 'react';
 import { fetchUsersThunk } from '../../store/users/usersThunks';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';
@@ -11,18 +11,24 @@ const ItemsPerPageBtn = () => {
   const limit = useSelector(SelectLimit);
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(fetchUsersThunk(Number(event.target.value)));
+    const elem = document.activeElement as HTMLElement;
+    if (elem) {
+      elem?.blur();
+    }
   };
 
   return (
     <div>
-      <details className="dropdown">
-        <summary
+      <div className="dropdown">
+        <label
+          tabIndex={0}
           className="btn btn-sm text-[0.8125rem] bg-darkerGray border-light
             pl-3 py-2 pr-3 font-normal h-9 w-[5.5rem] flex justify-between text-gray">
-          10
+          {limit}
           <ArrowIcon />
-        </summary>
+        </label>
         <ul
+          tabIndex={0}
           className="p-2 shadow-2xl menu dropdown-content z-[1]
             bg-base-100 rounded-box w-52">
           <li>
@@ -60,7 +66,7 @@ const ItemsPerPageBtn = () => {
             </label>
           </li>
         </ul>
-      </details>
+      </div>
       <span
         className="uppercase ml-3 text-[0.625rem] font-semibold text-gray
           tracking-[0.0125rem]">

@@ -13,14 +13,14 @@ const UserSearch = () => {
   const [query, setQuery] = useState('');
   const debouncedSearchTerm = useDebounce(query, 300);
 
+  useEffect(() => {
+    dispatch(searchUsersThunk(debouncedSearchTerm));
+  }, [debouncedSearchTerm, dispatch]);
+
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = event.target.value;
     setQuery(newQuery);
   };
-
-  useEffect(() => {
-    dispatch(searchUsersThunk(debouncedSearchTerm));
-  }, [debouncedSearchTerm, dispatch]);
 
   return (
     <div className="relative">

@@ -32,9 +32,14 @@ export interface UserType {
   ssn: string;
 }
 
-export interface UsersDataType {
+export type InitialUsersStateType = {
+  loading: 'idle' | 'pending' | 'succeeded' | 'failed';
+  error: string | null;
+};
+
+export type UsersDataType = {
   users: UserType[];
-  total: number;
-  skip: number;
-  limit: number;
-}
+  total: number | null;
+  skip: number | null;
+  limit: number | null;
+};

@@ -14,7 +14,7 @@ const UsersTable = () => {
   const { users } = useSelector((state: RootState) => state?.users);
 
   useEffect(() => {
-    dispatch(fetchUsersThunk());
+    dispatch(fetchUsersThunk(10));
   }, [dispatch]);
 
   function capitalizeFirstLetter(str: string) {

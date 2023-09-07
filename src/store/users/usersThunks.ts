@@ -3,7 +3,12 @@ import { fetchUsers } from '../../api/usersAPI';
 import { UsersDataType } from '../../types/usersTypes';
 import axios from 'axios';
 
-export const fetchUsersThunk = createAsyncThunk('users/fetchUsers', fetchUsers);
+export const fetchUsersThunk = createAsyncThunk<UsersDataType, number>(
+  'users/fetchUsers',
+  async (prop) => {
+    return await fetchUsers(prop);
+  }
+);
 
 export const searchUsersThunk = createAsyncThunk(
   'user/searchUsers',

@@ -1,15 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { UserType } from '../../types/usersTypes';
+import { InitialUsersStateType, UsersDataType } from '../../types/usersTypes';
 import { fetchUsersThunk, searchUsersThunk } from './usersThunks';
 
-const initialState: {
-  users: UserType[];
-  loading: 'idle' | 'pending' | 'succeeded' | 'failed';
-  error: string | null;
-} = {
+const initialState: InitialUsersStateType & UsersDataType = {
   users: [],
   loading: 'idle',
-  error: null
+  error: null,
+  limit: 10,
+  skip: null,
+  total: null
 };
 
 const userSlice = createSlice({

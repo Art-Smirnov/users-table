@@ -2,7 +2,6 @@ import axios from 'axios';
 import { UsersDataType } from '../types/usersTypes';
 
 export const fetchUsers = async (limit: number) => {
-  console.log(limit);
   try {
     const response = await axios.get(
       `https://dummyjson.com/users?limit=${limit}`

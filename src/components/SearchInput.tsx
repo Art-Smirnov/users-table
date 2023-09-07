@@ -26,7 +26,7 @@ const UserSearch = () => {
     <div className="relative">
       <input
         className="text-darkGray input input-bordered border-light w-full
-          mb-3 bg-darkerGray placeholder:text-gray h-9 text-[0.8125rem] py-2
+          mb-3 bg-darkerGray placeholder:text-gray h-9 py-2 text-[0.8125rem]
           pl-9"
         type="text"
         placeholder="Search..."

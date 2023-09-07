@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { UserType } from '../../types/usersTypes';
-import { fetchUsersThunk } from './usersThunks';
+import { fetchUsersThunk, searchUsersThunk } from './usersThunks';
 
 const initialState: {
   users: UserType[];
@@ -28,10 +28,23 @@ const userSlice = createSlice({
       .addCase(fetchUsersThunk.rejected, (state, action) => {
         state.loading = 'failed';
         state.error = action.error.message || 'An error occurred.';
+      })
+
+      .addCase(searchUsersThunk.pending, (state) => {
+        state.loading = 'pending';
+      })
+      .addCase(searchUsersThunk.fulfilled, (state, action) => {
+        state.loading = 'succeeded';
+        state.users = action.payload.users;
+      })
+      .addCase(searchUsersThunk.rejected, (state, action) => {
+        state.loading = 'failed';
+        state.error =
+          action.error.message || 'An error occurred during search.';
       });
   }
 });
 
-export { fetchUsersThunk };
+export { fetchUsersThunk, searchUsersThunk };
 
 export default userSlice.reducer;

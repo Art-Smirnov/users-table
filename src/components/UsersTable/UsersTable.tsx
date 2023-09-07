@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { AppDispatch, RootState } from '../../store/store';
 import { fetchUsersThunk } from '../../store/users/usersSlice';
 import { format, parseISO } from 'date-fns';
 // @ts-ignore
@@ -10,11 +10,10 @@ import { ReactComponent as FemaleIcon } from '../../icons/female.svg';
 import TableHead from './TableHead';
 
 const UsersTable = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { users } = useSelector((state: RootState) => state?.users);
 
   useEffect(() => {
-    // @ts-ignore
     dispatch(fetchUsersThunk());
   }, [dispatch]);
 

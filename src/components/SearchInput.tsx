@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchUsersThunk } from '../store/users/usersSlice';
+import { fetchUsersThunk } from '../store/users/usersThunks';
 import { AppDispatch } from '../store/store';
 import useDebounce from '../hooks/useDebounce';
 // @ts-ignore
@@ -13,10 +13,10 @@ const UserSearch = () => {
   const [query, setQuery] = useState('');
   const debouncedSearchTerm = useDebounce(query, 300);
   const limit = useSelector(SelectLimit);
-  console.log(limit, 'input');
+
   useEffect(() => {
     dispatch(
-      searchUsersThunk({ query: debouncedSearchTerm, limit: limit ?? 10 })
+      fetchUsersThunk({ query: debouncedSearchTerm, limit: limit ?? 10 })
     );
   }, [debouncedSearchTerm, dispatch, limit]);
 

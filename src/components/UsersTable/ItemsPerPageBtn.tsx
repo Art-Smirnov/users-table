@@ -1,10 +1,10 @@
 import React from 'react';
 // @ts-ignore
 import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
-import { fetchUsersThunk } from '../../store/users/usersThunks';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { SelectLimit } from '../../store/users/usersSelectors';
+import { setLimit } from '../../store/users/usersSlice';
 
 const ItemsPerPageBtn = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -13,7 +13,8 @@ const ItemsPerPageBtn = () => {
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newLimit = Number(event.target.value);
 
-    dispatch(fetchUsersThunk({ limit: newLimit }));
+    dispatch(setLimit(newLimit));
+
     const elem = document.activeElement as HTMLElement;
     if (elem) {
       elem?.blur();

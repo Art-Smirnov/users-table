@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { InitialUsersStateType, UsersDataType } from '../../types/usersTypes';
-import { fetchUsersThunk, searchUsersThunk } from './usersThunks';
+import { fetchUsersThunk } from './usersThunks';
 
 const initialState: InitialUsersStateType & UsersDataType = {
   users: [],
@@ -14,7 +14,11 @@ const initialState: InitialUsersStateType & UsersDataType = {
 const userSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    setLimit: (state, action) => {
+      state.limit = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUsersThunk.pending, (state) => {
@@ -23,28 +27,15 @@ const userSlice = createSlice({
       .addCase(fetchUsersThunk.fulfilled, (state, action) => {
         state.loading = 'succeeded';
         state.users = action.payload.users;
-        state.limit = action.payload.limit;
+        // state.limit = action.payload.limit;
       })
       .addCase(fetchUsersThunk.rejected, (state, action) => {
         state.loading = 'failed';
         state.error = action.error.message || 'An error occurred.';
-      })
-
-      .addCase(searchUsersThunk.pending, (state) => {
-        state.loading = 'pending';
-      })
-      .addCase(searchUsersThunk.fulfilled, (state, action) => {
-        state.loading = 'succeeded';
-        state.users = action.payload.users;
-      })
-      .addCase(searchUsersThunk.rejected, (state, action) => {
-        state.loading = 'failed';
-        state.error =
-          action.error.message || 'An error occurred during search.';
       });
   }
 });
 
-export { fetchUsersThunk, searchUsersThunk };
+export const { setLimit } = userSlice.actions;
 
 export default userSlice.reducer;

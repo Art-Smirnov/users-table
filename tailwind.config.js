@@ -11,7 +11,11 @@ module.exports = {
       dark: 'rgba(0, 0, 0, 0.34)',
       blue: '#55A2EE'
     },
-    extend: {}
+    extend: {
+      boxShadow: {
+        m: '0px 0px 20px 0px rgba(37, 45, 52, 0.10)'
+      }
+    }
   },
   daisyui: {
     themes: ['light']

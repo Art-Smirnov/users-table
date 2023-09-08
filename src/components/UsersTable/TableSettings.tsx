@@ -14,25 +14,27 @@ const TableSettings = () => {
       </label>
       <ul
         tabIndex={0}
-        className="p-2 shadow-2xl menu dropdown-content z-[1]
-            bg-base-100 rounded-box w-52">
+        className="p-2 menu dropdown-content z-[1] text-darkGray
+          bg-base-100 w-[14.25rem] rounded-xl mt-[.44rem]
+          border border-light shadow-m normal-case font-normal text-[.8125rem]">
         <li>
-          <label className="cursor-pointer flex items-center justify-between">
-            <span className="text-xs text-black leading-5">10</span>
-            <input type="checkbox" value={10} />
-          </label>
-        </li>
-        <li>
-          <label className="cursor-pointer flex items-center justify-between">
-            <span className="text-xs text-black leading-5">20</span>
-            <input type="checkbox" value={20} />
+          <label className="cursor-pointer flex items-center justify-between h-8">
+            <span className="text-black leading-5 ">Full name</span>
+            <input checked type="checkbox" readOnly />
           </label>
         </li>
 
         <li>
-          <label className="cursor-pointer flex items-center justify-between">
-            <span className="text-xs text-black leading-5">50</span>
-            <input type="checkbox" value={50} />
+          <label className="cursor-pointer flex items-center justify-between h-8">
+            <span className="text-black leading-5">Birthday</span>
+            <input checked type="checkbox" readOnly />
+          </label>
+        </li>
+
+        <li>
+          <label className="cursor-pointer flex items-center justify-between h-8">
+            <span className="text-black leading-5">Gender</span>
+            <input checked type="checkbox" readOnly />
           </label>
         </li>
       </ul>

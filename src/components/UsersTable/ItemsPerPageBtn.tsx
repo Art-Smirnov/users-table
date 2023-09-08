@@ -3,12 +3,12 @@ import React from 'react';
 import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';
-import { SelectLimit } from '../../store/users/usersSelectors';
+import { selectLimit } from '../../store/users/usersSelectors';
 import { setLimit } from '../../store/users/usersSlice';
 
 const ItemsPerPageBtn = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const limit = useSelector(SelectLimit);
+  const limit = useSelector(selectLimit);
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newLimit = Number(event.target.value);

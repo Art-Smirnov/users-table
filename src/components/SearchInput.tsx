@@ -5,20 +5,24 @@ import { AppDispatch } from '../store/store';
 import useDebounce from '../hooks/useDebounce';
 // @ts-ignore
 import { ReactComponent as SearchImage } from '../icons/search.svg';
-import { SelectLimit } from '../store/users/usersSelectors';
+import { selectLimit, selectSkip } from '../store/users/usersSelectors';
 
 const UserSearch = () => {
   const dispatch = useDispatch<AppDispatch>();
   // const loading = useSelector((state: RootState) => state?.users.loading);
   const [query, setQuery] = useState('');
   const debouncedSearchTerm = useDebounce(query, 300);
-  const limit = useSelector(SelectLimit);
-
+  const limit = useSelector(selectLimit);
+  const skip = useSelector(selectSkip);
   useEffect(() => {
     dispatch(
-      fetchUsersThunk({ query: debouncedSearchTerm, limit: limit ?? 10 })
+      fetchUsersThunk({
+        query: debouncedSearchTerm,
+        limit: limit ?? 10,
+        skip: skip!
+      })
     );
-  }, [debouncedSearchTerm, dispatch, limit]);
+  }, [debouncedSearchTerm, dispatch, limit, skip]);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = event.target.value;

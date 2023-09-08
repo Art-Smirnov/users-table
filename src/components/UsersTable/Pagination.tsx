@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 // @ts-ignore
 import { ReactComponent as ChevronIcon } from '../../icons/chevron.svg';
@@ -16,23 +15,25 @@ const Pagination = () => {
   const dispatch = useDispatch<AppDispatch>();
   const limit = useSelector(selectLimit);
   const total = useSelector(selectTotalUsers);
-  const [page, setPage] = useState<number | string>('1');
-
-  const [isEditing, setIsEditing] = useState(false);
+  const [page, setPage] = useState<number | string>(1);
 
   const totalPages = total ? Math.ceil(total / limit!) : 0;
 
+  if (totalPages < page) {
+    setPage(1);
+  }
+
   useEffect(() => {
-    const skip = page * limit! - limit!;
+    const skip = +page * limit! - limit!;
     dispatch(setSkip(skip));
   }, [dispatch, limit, page]);
 
   const handleIncrementPage = () => {
-    setPage((p) => p + 1);
+    setPage((p) => +p + 1);
   };
 
   const handleDecrementPage = () => {
-    setPage((p) => p - 1);
+    setPage((p) => +p - 1);
   };
 
   const handleSetFirstPage = () => {
@@ -45,14 +46,11 @@ const Pagination = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
-
-    setIsEditing(false);
-    const newPage = Math.min(Math.max(Number(inputValue), 1), totalPages);
-
+    const newPage = Math.min(+inputValue, totalPages);
     setPage(newPage);
   };
 
-  const firstPage = page === 1;
+  const firstPage = page <= 1;
   const lastPage = page === totalPages;
 
   return (
@@ -60,7 +58,9 @@ const Pagination = () => {
       <div
         className="font-semibold text-[0.625rem] text-gray
         tracking-[0.0125rem]">
-        <span className="">{`${page} - ${totalPages} OF ${total}`}</span>
+        <span className="">{`${
+          page ? page : 1
+        } - ${totalPages} OF ${total}`}</span>
       </div>
       <div className="flex gap-[.12rem]">
         <button
@@ -79,10 +79,9 @@ const Pagination = () => {
         </button>
         <input
           type="number"
-          onFocus={() => setIsEditing(true)}
-          onBlur={() => setIsEditing(false)}
+          min={1}
           onChange={handleInputChange}
-          value={isEditing ? '' : page}
+          value={page === 0 ? '' : page}
           className="btn btn-sm text-[0.8125rem] bg-darkerGray border-light
           font-normal h-9 w-16 text-gray"
         />

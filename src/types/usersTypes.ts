@@ -43,3 +43,9 @@ export type UsersDataType = {
   skip: number | null;
   limit: number | null;
 };
+
+export interface FetchUsersProps {
+  skip?: number;
+  limit?: number;
+  query?: string;
+}

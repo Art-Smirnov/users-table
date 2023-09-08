@@ -1,10 +1,12 @@
 import axios from 'axios';
-import { UsersDataType } from '../types/usersTypes';
+import { FetchUsersProps, UsersDataType } from '../types/usersTypes';
 
-export const fetchUsers = async (limit: number) => {
+export const fetchUsers = async (props: FetchUsersProps) => {
   try {
     const response = await axios.get(
-      `https://dummyjson.com/users?limit=${limit}`
+      `https://dummyjson.com/users/search?q=${props.query}&limit=${
+        props.limit
+      }${props.skip ? `&skip=${props.skip}` : ''}`
     );
     return response.data as UsersDataType;
   } catch (error) {

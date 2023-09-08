@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { searchUsersThunk } from '../store/users/usersSlice';
 import { AppDispatch } from '../store/store';
 import useDebounce from '../hooks/useDebounce';
 // @ts-ignore
 import { ReactComponent as SearchImage } from '../icons/search.svg';
+import { SelectLimit } from '../store/users/usersSelectors';
 
 const UserSearch = () => {
   const dispatch = useDispatch<AppDispatch>();
   // const loading = useSelector((state: RootState) => state?.users.loading);
-
   const [query, setQuery] = useState('');
   const debouncedSearchTerm = useDebounce(query, 300);
-
+  const limit = useSelector(SelectLimit);
+  console.log(limit, 'input');
   useEffect(() => {
-    dispatch(searchUsersThunk(debouncedSearchTerm));
-  }, [debouncedSearchTerm, dispatch]);
+    dispatch(
+      searchUsersThunk({ query: debouncedSearchTerm, limit: limit ?? 10 })
+    );
+  }, [debouncedSearchTerm, dispatch, limit]);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = event.target.value;

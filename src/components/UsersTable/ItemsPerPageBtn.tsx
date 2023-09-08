@@ -9,8 +9,11 @@ import { SelectLimit } from '../../store/users/usersSelectors';
 const ItemsPerPageBtn = () => {
   const dispatch = useDispatch<AppDispatch>();
   const limit = useSelector(SelectLimit);
+
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(fetchUsersThunk(Number(event.target.value)));
+    const newLimit = Number(event.target.value);
+
+    dispatch(fetchUsersThunk({ limit: newLimit }));
     const elem = document.activeElement as HTMLElement;
     if (elem) {
       elem?.blur();

@@ -1,3 +1,5 @@
+import TableSettings from './TableSettings';
+
 const TableHead = () => {
   return (
     <thead className="bg-lightSecond text-[0.625rem] font-semibold">
@@ -26,8 +28,8 @@ const TableHead = () => {
         <td className="border-r border-r-light px-2 py-[0.38rem]">Company</td>
         <td className="border-r border-r-light px-2 py-[0.38rem]">ein</td>
         <td className="border-r border-r-light px-2 py-[0.38rem]">ssn</td>
-        <th className="border-t border-light bg-lightSecond px-2 py-[0.38rem]">
-          X
+        <th className="p-0">
+          <TableSettings />
         </th>
       </tr>
     </thead>

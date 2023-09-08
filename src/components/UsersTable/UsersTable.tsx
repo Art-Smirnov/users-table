@@ -4,9 +4,9 @@ import TableBody from './TableBody';
 
 const UsersTable = () => {
   return (
-    <div className="border border-light rounded-xl">
-      <div className="overflow-x-auto max-h-[34.75rem]">
-        <table className="table table-pin-rows table-pin-cols border-hidden">
+    <div>
+      <div className="overflow-x-auto h-[38.5rem] border border-light rounded-t-xl">
+        <table className="table table-pin-rows table-pin-cols border-hidden ">
           <TableHead />
           <TableBody />
         </table>

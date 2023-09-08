@@ -19,9 +19,9 @@ const Pagination = () => {
 
   const totalPages = total ? Math.ceil(total / limit!) : 0;
 
-  if (totalPages < page) {
-    setPage(1);
-  }
+  // if (totalPages < page) {
+  //   setPage(1);
+  // }
 
   useEffect(() => {
     const skip = +page * limit! - limit!;

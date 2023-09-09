@@ -17,16 +17,17 @@ const Pagination = () => {
   const total = useSelector(selectTotalUsers);
   const [page, setPage] = useState<number | string>(1);
 
-  const totalPages = total ? Math.ceil(total / limit!) : 0;
+  const totalPages = Math.ceil(total! / limit!);
 
   // if (totalPages < page) {
   //   setPage(1);
   // }
 
+  const skip = +page * limit! - limit!;
+
   useEffect(() => {
-    const skip = +page * limit! - limit!;
     dispatch(setSkip(skip));
-  }, [dispatch, limit, page]);
+  }, [dispatch, skip]);
 
   const handleIncrementPage = () => {
     setPage((p) => +p + 1);
@@ -53,14 +54,15 @@ const Pagination = () => {
   const firstPage = page <= 1;
   const lastPage = page === totalPages;
 
+  const firstSeenNumber = Math.min(skip + 1, total!);
+  const lastSeenNumber = Math.min(skip + limit!, total!);
+
   return (
     <div className="flex items-center gap-3">
       <div
         className="font-semibold text-[0.625rem] text-gray
         tracking-[0.0125rem]">
-        <span className="">{`${
-          page ? page : 1
-        } - ${totalPages} OF ${total}`}</span>
+        <span className="">{`${firstSeenNumber} - ${lastSeenNumber} OF ${total}`}</span>
       </div>
       <div className="flex gap-[.12rem]">
         <button

@@ -2,6 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { UsersDataType } from '../../types/usersTypes';
 import { fetchUsersThunk } from './usersThunks';
 import { refactorUsersData } from '../../utils/refactorUsersData';
+import { DISABLED_FOR_SELECTION_COLUMNS } from '../../utils/constants';
+
+const storedUserColumns = localStorage.getItem('userColumns');
+const initialUserColumns =
+  storedUserColumns != null
+    ? JSON.parse(storedUserColumns)
+    : DISABLED_FOR_SELECTION_COLUMNS;
 
 const initialState: UsersDataType = {
   users: [],
@@ -10,7 +17,7 @@ const initialState: UsersDataType = {
   limit: 10,
   skip: null,
   total: null,
-  selectedColumns: ['username', 'email']
+  selectedColumns: initialUserColumns
 };
 
 const userSlice = createSlice({
@@ -25,6 +32,11 @@ const userSlice = createSlice({
     },
     updateSelectedColumns: (state, action) => {
       state.selectedColumns = action.payload;
+
+      localStorage.setItem(
+        'userColumns',
+        JSON.stringify(state.selectedColumns)
+      );
     }
   },
   extraReducers: (builder) => {

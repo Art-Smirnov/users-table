@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FetchUsersProps, UsersDataType } from '../types/usersTypes';
+import { FetchUsersProps } from '../types/usersTypes';
 
 export const fetchUsers = async (props: FetchUsersProps) => {
   try {
@@ -8,7 +8,7 @@ export const fetchUsers = async (props: FetchUsersProps) => {
         props.limit
       }${props.skip ? `&skip=${props.skip}` : ''}`
     );
-    return response.data as UsersDataType;
+    return response.data;
   } catch (error) {
     throw new Error('Failed to fetch users');
   }

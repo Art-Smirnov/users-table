@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { InitialUsersStateType, UsersDataType } from '../../types/usersTypes';
+import { UsersDataType } from '../../types/usersTypes';
 import { fetchUsersThunk } from './usersThunks';
+import { refactorUsersData } from '../../utils/refactorUsersData';
 
-const initialState: InitialUsersStateType & UsersDataType = {
+const initialState: UsersDataType = {
   users: [],
   loading: 'idle',
   error: null,
   limit: 10,
   skip: null,
-  total: null
+  total: null,
+  selectedColumns: ['username', 'email']
 };
 
 const userSlice = createSlice({
@@ -20,6 +22,9 @@ const userSlice = createSlice({
     },
     setSkip: (state, action) => {
       state.skip = action.payload;
+    },
+    updateSelectedColumns: (state, action) => {
+      state.selectedColumns = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -29,9 +34,8 @@ const userSlice = createSlice({
       })
       .addCase(fetchUsersThunk.fulfilled, (state, action) => {
         state.loading = 'succeeded';
-        state.users = action.payload.users;
+        state.users = action.payload.users.map(refactorUsersData);
         state.total = action.payload.total;
-        // state.limit = action.payload.limit;
       })
       .addCase(fetchUsersThunk.rejected, (state, action) => {
         state.loading = 'failed';
@@ -40,6 +44,6 @@ const userSlice = createSlice({
   }
 });
 
-export const { setLimit, setSkip } = userSlice.actions;
+export const { updateSelectedColumns, setLimit, setSkip } = userSlice.actions;
 
 export default userSlice.reducer;

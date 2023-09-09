@@ -1,6 +1,12 @@
+import { memo } from 'react';
 import TableSettings from './TableSettings';
+import { useSelector } from 'react-redux';
+import { selectSortedSelectedColumns } from '../../store/users/usersSelectors';
+import { USER_COLUMNS } from '../../utils/constants';
 
 const TableHead = () => {
+  const selectedColumns = useSelector(selectSortedSelectedColumns);
+
   return (
     <thead className="bg-lightSecond text-[0.625rem] font-semibold">
       <tr className="uppercase bg-lightSecond text-gray leading-3 tracking-[.0125rem]">
@@ -9,25 +15,16 @@ const TableHead = () => {
             full Name
           </div>
         </th>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">Birthday</td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">Gender</td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">Email</td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">Phone</td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">Usename</td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">
-          General info
-        </td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">Domain</td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">IP</td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">Mac ip</td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">Address</td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">Bank</td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">
-          University
-        </td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">Company</td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">ein</td>
-        <td className="border-r border-r-light px-2 py-[0.38rem]">ssn</td>
+        {selectedColumns.map((column) => {
+          return (
+            <td
+              key={column}
+              className="border-r border-r-light px-2 py-[0.38rem]">
+              {USER_COLUMNS[column as keyof typeof USER_COLUMNS]}
+            </td>
+          );
+        })}
+
         <th className="p-0">
           <TableSettings />
         </th>
@@ -36,4 +33,4 @@ const TableHead = () => {
   );
 };
 
-export default TableHead;
+export default memo(TableHead);

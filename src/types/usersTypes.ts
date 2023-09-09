@@ -1,5 +1,30 @@
 export interface UserType {
   id: number;
+  fullName: {
+    image: string;
+    firstName: string;
+    maidenName: string;
+    lastName: string;
+  };
+  birthday: string;
+  gender: string;
+  email: string;
+  phone: string;
+  username: string;
+  generalInfo: string;
+  domain: string;
+  ip: string;
+  macAddress: string;
+  address: string;
+  bank: string;
+  university: string;
+  company: string;
+  ein: string;
+  ssn: string;
+}
+
+export interface ApiUserType {
+  id: number;
   firstName: string;
   maidenName: string;
   lastName: string;
@@ -23,7 +48,9 @@ export interface UserType {
     postalCode: string;
     state: string;
   };
-  bank: string;
+  bank: {
+    cardType: string;
+  };
   university: string;
   company: {
     name: string;
@@ -32,13 +59,20 @@ export interface UserType {
   ssn: string;
 }
 
-export type InitialUsersStateType = {
+type UserColumnKey = keyof UserColumns;
+
+export type UsersDataType = {
+  users: UserType[];
+  total: number | null;
+  skip: number | null;
+  limit: number | null;
+  selectedColumns: UserColumnKey[];
   loading: 'idle' | 'pending' | 'succeeded' | 'failed';
   error: string | null;
 };
 
-export type UsersDataType = {
-  users: UserType[];
+export type ApiUsersDataType = {
+  users: ApiUserType[];
   total: number | null;
   skip: number | null;
   limit: number | null;
@@ -48,4 +82,29 @@ export interface FetchUsersProps {
   skip?: number;
   limit?: number;
   query?: string;
+}
+
+export interface UserColumns {
+  fullName: string;
+  birthday: string;
+  gender: string;
+  email: string;
+  phone: string;
+  username: string;
+  generalInfo: string;
+  domain: string;
+  ip: string;
+  macAddress: string;
+  address: string;
+  bank: string;
+  university: string;
+  company: string;
+  ein: string;
+  ssn: string;
+}
+
+export interface UserColumn {
+  id: keyof UserColumns;
+  label: string;
+  sortId: number;
 }

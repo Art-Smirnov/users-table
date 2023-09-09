@@ -1,5 +1,5 @@
 import UsersTable from './components/UsersTable';
-import UserSearch from './components/SearchInput';
+import UserSearch from './components/MainSearchInput';
 
 function App() {
   return (

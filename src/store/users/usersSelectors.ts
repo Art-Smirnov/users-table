@@ -2,6 +2,7 @@
 import { RootState } from '../store';
 import { USER_COLUMNS_ARR } from '../../utils/constants';
 import { createSelector } from 'reselect';
+import { UserType } from '../../types/usersTypes';
 
 export const selectUsers = (state: RootState) => state.users;
 
@@ -28,6 +29,25 @@ export const selectSortedSelectedColumns = createSelector(
       const sortIdB = USER_COLUMNS_ARR.find((item) => item.id === b)?.sortId;
 
       return sortIdA - sortIdB;
+    });
+  }
+);
+
+export const selectClientSearchQuery = (state: RootState) =>
+  state.users.clientSearchQuery;
+
+export const selectFilteredUsers = createSelector(
+  [selectUsers, selectClientSearchQuery],
+  (users, searchQuery) => {
+    return users.users.filter((user) => {
+      const { fullName, email, username } = user as UserType;
+      const lowerCaseQuery = searchQuery.toLowerCase();
+      return (
+        fullName.firstName.toLowerCase().includes(lowerCaseQuery) ||
+        fullName.lastName.toLowerCase().includes(lowerCaseQuery) ||
+        email.toLowerCase().includes(lowerCaseQuery) ||
+        username.toLowerCase().includes(lowerCaseQuery)
+      );
     });
   }
 );

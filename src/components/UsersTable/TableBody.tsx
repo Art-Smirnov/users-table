@@ -1,9 +1,10 @@
+// @ts-nocheck
 import { useSelector } from 'react-redux';
-import { selectUsers } from '../../store/users/usersSelectors';
+import { selectFilteredUsers } from '../../store/users/usersSelectors';
 import UserColumns from './UserColumns';
 
 const TableBody = () => {
-  const { users } = useSelector(selectUsers);
+  const users = useSelector(selectFilteredUsers);
 
   return (
     <tbody>
@@ -15,7 +16,7 @@ const TableBody = () => {
             <th className="p-0">
               <div
                 className="flex items-center gap-1 min-w-max border-r
-                      border-r-light px-2 py-3">
+                  border-r-light px-2 py-3">
                 <div className="avatar">
                   <div className="rounded-full w-8 border border-dark">
                     <img
@@ -26,10 +27,10 @@ const TableBody = () => {
                 </div>
                 <div>
                   <span className="font-medium">{`
-                      ${user.fullName.firstName} 
-                      ${user.fullName.maidenName} 
-                      ${user.fullName.lastName}
-                    `}</span>
+                    ${user.fullName.firstName} 
+                    ${user.fullName.maidenName} 
+                    ${user.fullName.lastName}
+                  `}</span>
                 </div>
               </div>
             </th>

@@ -4,7 +4,7 @@ import TableBody from './TableBody';
 
 const UsersTable = () => {
   return (
-    <div>
+    <>
       <div className="overflow-x-auto h-[38.5rem] border border-light rounded-t-xl">
         <table className="table table-pin-rows table-pin-cols border-hidden ">
           <TableHead />
@@ -12,7 +12,7 @@ const UsersTable = () => {
         </table>
       </div>
       <TableFooter />
-    </div>
+    </>
   );
 };
 

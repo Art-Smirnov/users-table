@@ -9,6 +9,7 @@ import {
   DISABLED_FOR_SELECTION_COLUMNS,
   USER_COLUMNS_ARR
 } from '../../utils/constants';
+import LocalSearchInput from './LocalSearchInput';
 
 const TableSettings = () => {
   const selectedColumns = useSelector(selectSelectedColumns);
@@ -38,6 +39,8 @@ const TableSettings = () => {
         className="p-2 menu dropdown-content z-[1] text-darkGray
           bg-base-100 w-[14.25rem] rounded-xl mt-[.44rem]
           border border-light shadow-m normal-case font-normal text-[.8125rem]">
+        <LocalSearchInput />
+
         {USER_COLUMNS_ARR.map((column) => {
           const disabledForSelection = DISABLED_FOR_SELECTION_COLUMNS.includes(
             column.id

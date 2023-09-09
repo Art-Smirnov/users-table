@@ -69,6 +69,7 @@ export type UsersDataType = {
   selectedColumns: UserColumnKey[];
   loading: 'idle' | 'pending' | 'succeeded' | 'failed';
   error: string | null;
+  clientSearchQuery: string;
 };
 
 export type ApiUsersDataType = {

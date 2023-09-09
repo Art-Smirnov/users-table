@@ -17,7 +17,8 @@ const initialState: UsersDataType = {
   limit: 10,
   skip: null,
   total: null,
-  selectedColumns: initialUserColumns
+  selectedColumns: initialUserColumns,
+  clientSearchQuery: ''
 };
 
 const userSlice = createSlice({
@@ -29,6 +30,9 @@ const userSlice = createSlice({
     },
     setSkip: (state, action) => {
       state.skip = action.payload;
+    },
+    setClientSearchQuery: (state, action) => {
+      state.clientSearchQuery = action.payload;
     },
     updateSelectedColumns: (state, action) => {
       state.selectedColumns = action.payload;
@@ -56,6 +60,11 @@ const userSlice = createSlice({
   }
 });
 
-export const { updateSelectedColumns, setLimit, setSkip } = userSlice.actions;
+export const {
+  updateSelectedColumns,
+  setLimit,
+  setSkip,
+  setClientSearchQuery
+} = userSlice.actions;
 
 export default userSlice.reducer;

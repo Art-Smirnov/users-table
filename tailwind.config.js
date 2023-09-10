@@ -5,11 +5,15 @@ module.exports = {
     colors: {
       light: '#EAEDF0',
       lightSecond: '#F7F7F8',
+      anotherLight: '#F8F9F9',
       gray: '#5F6E7C',
       darkGray: '#202932',
       darkerGray: 'rgba(32, 41, 50, 0.03)',
       dark: 'rgba(0, 0, 0, 0.34)',
-      blue: '#55A2EE'
+      blue: '#55A2EE',
+      green: '#D2FFCE',
+      red: '#FEDBDB',
+      yellow: '#FEF0DB'
     },
     extend: {
       boxShadow: {

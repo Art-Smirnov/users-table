@@ -15,6 +15,7 @@ const TableHead = () => {
             full Name
           </div>
         </th>
+
         {selectedColumns.map((column) => {
           return (
             <td
@@ -29,7 +30,7 @@ const TableHead = () => {
           );
         })}
 
-        <th className="p-0">
+        <th className="p-0 w-[2.125rem]">
           <TableSettings />
         </th>
       </tr>

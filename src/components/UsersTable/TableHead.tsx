@@ -2,7 +2,7 @@ import { memo } from 'react';
 import TableSettings from './TableSettings';
 import { useSelector } from 'react-redux';
 import { selectSortedSelectedColumns } from '../../store/users/usersSelectors';
-import { USER_COLUMNS } from '../../utils/constants';
+import { USER_COLUMNS_TITLES_SCHEMA } from '../../utils/constants';
 
 const TableHead = () => {
   const selectedColumns = useSelector(selectSortedSelectedColumns);
@@ -20,7 +20,11 @@ const TableHead = () => {
             <td
               key={column}
               className="border-r border-r-light px-2 py-[0.38rem]">
-              {USER_COLUMNS[column as keyof typeof USER_COLUMNS]}
+              {
+                USER_COLUMNS_TITLES_SCHEMA[
+                  column as keyof typeof USER_COLUMNS_TITLES_SCHEMA
+                ]
+              }
             </td>
           );
         })}

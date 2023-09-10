@@ -1,5 +1,5 @@
 import { RootState } from '../store';
-import { USER_COLUMNS_ARR } from '../../utils/constants';
+import { USER_COLUMNS_ARR_SCHEMA } from '../../utils/constants';
 import { createSelector } from 'reselect';
 import { UserType } from '../../types/usersTypes';
 
@@ -26,8 +26,10 @@ export const selectSortedSelectedColumns = createSelector(
   [selectSelectedColumns],
   (selectedColumns) => {
     return selectedColumns.slice().sort((a, b) => {
-      const sortIdA = USER_COLUMNS_ARR.find((item) => item.id === a)?.sortId;
-      const sortIdB = USER_COLUMNS_ARR.find((item) => item.id === b)?.sortId;
+      const sortIdA = USER_COLUMNS_ARR_SCHEMA.find((item) => item.id === a)
+        ?.sortId;
+      const sortIdB = USER_COLUMNS_ARR_SCHEMA.find((item) => item.id === b)
+        ?.sortId;
 
       return sortIdA! - sortIdB!;
     });

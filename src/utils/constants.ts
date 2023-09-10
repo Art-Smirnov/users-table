@@ -1,6 +1,6 @@
 import { UserColumn, UserColumns } from '../types/usersTypes';
 
-export const USER_COLUMNS: UserColumns = {
+export const USER_COLUMNS_TITLES_SCHEMA: UserColumns = {
   fullName: 'Full name',
   birthday: 'Birthday',
   gender: 'Gender',
@@ -19,7 +19,7 @@ export const USER_COLUMNS: UserColumns = {
   ssn: 'SSN'
 };
 
-export const USER_COLUMNS_ARR: UserColumn[] = [
+export const USER_COLUMNS_ARR_SCHEMA: UserColumn[] = [
   { id: 'fullName', label: 'Full name', sortId: 0 },
   { id: 'birthday', label: 'Birthday', sortId: 1 },
   { id: 'gender', label: 'Gender', sortId: 2 },
@@ -40,4 +40,4 @@ export const USER_COLUMNS_ARR: UserColumn[] = [
 
 export const DISABLED_FOR_SELECTION_COLUMNS = ['fullName', 'username', 'email'];
 
-export const ITEMS_PER_PAGE = [10, 20, 30];
+export const ITEMS_PER_PAGE_SCHEMA = [10, 20, 50];

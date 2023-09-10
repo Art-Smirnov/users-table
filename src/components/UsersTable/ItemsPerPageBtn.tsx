@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { selectLimit } from '../../store/users/usersSelectors';
 import { setLimit } from '../../store/users/usersSlice';
-import { ITEMS_PER_PAGE } from '../../utils/constants';
+import { ITEMS_PER_PAGE_SCHEMA } from '../../utils/constants';
 import Checkbox from '../shared/Checkbox';
 
 const ItemsPerPageBtn = () => {
@@ -38,7 +38,7 @@ const ItemsPerPageBtn = () => {
           className="p-2 menu dropdown-content z-[1] text-darkGray
             bg-base-100 w-[14.25rem] rounded-xl mt-[.44rem] leading-5
             border border-light shadow-m normal-case font-normal text-[.8125rem]">
-          {ITEMS_PER_PAGE.map((value, id) => {
+          {ITEMS_PER_PAGE_SCHEMA.map((value, id) => {
             return (
               <li key={id}>
                 <Checkbox

@@ -7,7 +7,7 @@ import { updateSelectedColumns } from '../../store/users/usersSlice';
 import { AppDispatch } from '../../store/store';
 import {
   DISABLED_FOR_SELECTION_COLUMNS,
-  USER_COLUMNS_ARR
+  USER_COLUMNS_ARR_SCHEMA
 } from '../../utils/constants';
 import LocalSearchInput from './LocalSearchInput';
 import Checkbox from '../shared/Checkbox';
@@ -42,7 +42,7 @@ const TableSettings = () => {
           border border-light shadow-m normal-case font-normal text-[.8125rem]">
         <LocalSearchInput />
 
-        {USER_COLUMNS_ARR.map((column) => {
+        {USER_COLUMNS_ARR_SCHEMA.map((column) => {
           const disabledForSelection = DISABLED_FOR_SELECTION_COLUMNS.includes(
             column.id
           );

@@ -24,12 +24,6 @@ const userSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    setLimit: (state, action) => {
-      state.limit = action.payload;
-    },
-    setSkip: (state, action) => {
-      state.skip = action.payload;
-    },
     setClientSearchQuery: (state, action) => {
       state.clientSearchQuery = action.payload;
     },
@@ -51,6 +45,8 @@ const userSlice = createSlice({
         state.loading = 'succeeded';
         state.users = action.payload.users.map(refactorUsersData);
         state.total = action.payload.total;
+        state.limit = action.payload.limit;
+        state.skip = action.payload.skip;
       })
       .addCase(fetchUsersThunk.rejected, (state, action) => {
         state.loading = 'failed';
@@ -59,11 +55,7 @@ const userSlice = createSlice({
   }
 });
 
-export const {
-  updateSelectedColumns,
-  setLimit,
-  setSkip,
-  setClientSearchQuery
-} = userSlice.actions;
+export const { updateSelectedColumns, setClientSearchQuery } =
+  userSlice.actions;
 
 export default userSlice.reducer;

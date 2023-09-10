@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 // @ts-ignore
 import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
-import { selectLimit } from '../../store/users/usersSelectors';
-import { setLimit } from '../../store/users/usersSlice';
 import { ITEMS_PER_PAGE_SCHEMA } from '../../utils/constants';
 import Checkbox from '../shared/Checkbox';
+import { fetchUsersThunk } from '../../store/users/usersThunks';
 
 const ItemsPerPageBtn = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const limit = useSelector(selectLimit);
+  const [limit, setLimit] = useState(10);
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newLimit = Number(event.target.value);
 
-    dispatch(setLimit(newLimit));
+    dispatch(fetchUsersThunk({ limit: newLimit ?? 10, skip: 0 }));
+    setLimit(newLimit);
 
     const elem = document.activeElement as HTMLElement;
     if (elem) {

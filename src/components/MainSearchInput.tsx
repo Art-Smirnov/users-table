@@ -1,38 +1,35 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { memo, useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { fetchUsersThunk } from '../store/users/usersThunks';
 import { AppDispatch } from '../store/store';
-import useDebounce from '../hooks/useDebounce';
-// @ts-ignore
-import { selectLimit, selectSkip } from '../store/users/usersSelectors';
 import UserInput from './shared/UserInput';
+import debounce from 'lodash/debounce'; // Import debounce from lodash
 
 const MainSearchInput = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [query, setQuery] = useState('');
-  const debouncedSearchTerm = useDebounce(query, 300);
-  const limit = useSelector(selectLimit);
-  const skip = useSelector(selectSkip);
-
-  useEffect(() => {
-    dispatch(
-      fetchUsersThunk({
-        query: debouncedSearchTerm,
-        limit: limit ?? 10,
-        skip: skip!
-      })
-    );
-  }, [debouncedSearchTerm, dispatch, limit, skip]);
 
   const handleSearch = useCallback(
+    debounce((newQuery: string) => {
+      dispatch(
+        fetchUsersThunk({
+          query: newQuery
+        })
+      );
+    }, 300),
+    [dispatch]
+  );
+
+  const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const newQuery = event.target.value;
       setQuery(newQuery);
+      handleSearch(newQuery);
     },
-    []
+    [handleSearch]
   );
 
-  return <UserInput className="mb-3" value={query} onChange={handleSearch} />;
+  return <UserInput className="mb-3" value={query} onChange={handleChange} />;
 };
 
-export default MainSearchInput;
+export default memo(MainSearchInput);

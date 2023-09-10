@@ -13,12 +13,6 @@ export const selectSkip = (state: RootState) => state.users.skip;
 
 export const selectIsLoading = (state: RootState) => state.users.loading;
 
-export const selectColumnNames = (state: RootState) => {
-  if (state.users.users.length > 1) {
-    return Object.keys(state.users.users[0]);
-  }
-};
-
 export const selectSelectedColumns = (state: RootState) =>
   state.users.selectedColumns;
 

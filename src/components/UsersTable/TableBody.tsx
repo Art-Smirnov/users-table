@@ -2,20 +2,19 @@
 import { useSelector } from 'react-redux';
 import { selectFilteredUsers } from '../../store/users/usersSelectors';
 import UserColumns from './UserColumns';
-import Banner from './Banner';
 
 const TableBody = () => {
   const users = useSelector(selectFilteredUsers);
 
   return (
     <tbody>
-      {users.length === 0 && (
-        <tr>
-          <td className="col-span-full">
-            <Banner type="not-found" />
-          </td>
-        </tr>
-      )}
+      {/*{users.length === 0 && (*/}
+      {/*  <tr>*/}
+      {/*    <td className="col-span-full">*/}
+      {/*      <Banner type="not-found" />*/}
+      {/*    </td>*/}
+      {/*  </tr>*/}
+      {/*)}*/}
       {users?.map((user) => {
         return (
           <tr

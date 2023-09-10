@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { selectLimit } from '../../store/users/usersSelectors';
 import { setLimit } from '../../store/users/usersSlice';
+import { ITEMS_PER_PAGE } from '../../utils/constants';
+import Checkbox from '../shared/Checkbox';
 
 const ItemsPerPageBtn = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,42 +35,22 @@ const ItemsPerPageBtn = () => {
         </label>
         <ul
           tabIndex={0}
-          className="p-2 shadow-2xl menu dropdown-content z-[1]
-            bg-base-100 rounded-box w-52">
-          <li>
-            <label className="cursor-pointer flex items-center justify-between">
-              <span className="text-xs text-black leading-5">10</span>
-              <input
-                type="checkbox"
-                value={10}
-                checked={limit === 10}
-                onChange={handleOptionChange}
-              />
-            </label>
-          </li>
-          <li>
-            <label className="cursor-pointer flex items-center justify-between">
-              <span className="text-xs text-black leading-5">20</span>
-              <input
-                type="checkbox"
-                value={20}
-                checked={limit === 20}
-                onChange={handleOptionChange}
-              />
-            </label>
-          </li>
-
-          <li>
-            <label className="cursor-pointer flex items-center justify-between">
-              <span className="text-xs text-black leading-5">50</span>
-              <input
-                type="checkbox"
-                value={50}
-                checked={limit === 50}
-                onChange={handleOptionChange}
-              />
-            </label>
-          </li>
+          className="p-2 menu dropdown-content z-[1] text-darkGray
+            bg-base-100 w-[14.25rem] rounded-xl mt-[.44rem] leading-5
+            border border-light shadow-m normal-case font-normal text-[.8125rem]">
+          {ITEMS_PER_PAGE.map((value, id) => {
+            return (
+              <li key={id}>
+                <Checkbox
+                  id={id.toString()}
+                  value={value}
+                  label={value.toString()}
+                  isChecked={limit === value}
+                  onChange={handleOptionChange}
+                />
+              </li>
+            );
+          })}
         </ul>
       </div>
       <span

@@ -14,6 +14,7 @@ interface UserColumnsProps {
 const UserColumns: React.FC<UserColumnsProps> = ({ user }) => {
   const selectedColumns = useSelector(selectSortedSelectedColumns);
   type ValidColumns = keyof UserType;
+
   const getColumnText = (column: ValidColumns): React.ReactNode => {
     const isGender = column === 'gender';
 
@@ -29,30 +30,31 @@ const UserColumns: React.FC<UserColumnsProps> = ({ user }) => {
       );
     }
 
+    if (isGender) {
+      return (
+        <div className="flex items-center gap-[.12rem]">
+          {user.gender === 'male' ? <MaleIcon /> : <FemaleIcon />}
+          {capitalizeFirstLetter(user.gender)}
+        </div>
+      );
+    }
+
     return (
-      <>
-        {isGender && (
-          <div className="flex items-center gap-[.12rem]">
-            {user.gender === 'male' ? <MaleIcon /> : <FemaleIcon />}{' '}
-            {capitalizeFirstLetter(user.gender)}
-          </div>
-        )}
-        {!isGender && (
-          <span className="min-w-max inline-block">
-            {user[column] as keyof UserType}
-          </span>
-        )}
-      </>
+      <span className="min-w-max inline-block">
+        {user[column] as keyof UserType}
+      </span>
     );
   };
 
   return (
     <>
-      {selectedColumns.map((column) => (
-        <td key={column} className="border-r border-r-light px-2 py-3">
-          {getColumnText(column)}
-        </td>
-      ))}
+      {selectedColumns.map((column) => {
+        return (
+          <td key={column} className="border-r border-r-light px-2 py-3">
+            {getColumnText(column)}
+          </td>
+        );
+      })}
     </>
   );
 };

@@ -15,12 +15,12 @@ const Table = () => {
     return <Banner type="error" />;
   }
 
-  if (usersQuantity === 0) {
-    return <Banner type="not-found" />;
-  }
-
   if (isLoading === 'pending') {
     return <Banner type="loading" />;
+  }
+
+  if (usersQuantity === 0) {
+    return <Banner type="not-found" />;
   }
 
   return (

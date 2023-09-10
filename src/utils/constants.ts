@@ -39,3 +39,5 @@ export const USER_COLUMNS_ARR: UserColumn[] = [
 ];
 
 export const DISABLED_FOR_SELECTION_COLUMNS = ['fullName', 'username', 'email'];
+
+export const ITEMS_PER_PAGE = [10, 20, 30];

@@ -19,15 +19,14 @@ const Pagination = () => {
 
   const totalPages = Math.ceil(total! / limit!);
 
-  // if (totalPages < page) {
-  //   setPage(1);
-  // }
-
   const skip = +page * limit! - limit!;
 
   useEffect(() => {
     dispatch(setSkip(skip));
-  }, [dispatch, skip]);
+    if (totalPages < page) {
+      setPage(1);
+    }
+  }, [dispatch, page, skip, totalPages]);
 
   const handleIncrementPage = () => {
     setPage((p) => +p + 1);
@@ -54,7 +53,7 @@ const Pagination = () => {
   const firstPage = page <= 1;
   const lastPage = page === totalPages;
 
-  const firstSeenNumber = Math.min(skip + 1, total!);
+  const firstSeenNumber = Math.max(Math.min(skip + 1, total!), 1);
   const lastSeenNumber = Math.min(skip + limit!, total!);
 
   return (

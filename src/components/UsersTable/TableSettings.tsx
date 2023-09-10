@@ -10,13 +10,14 @@ import {
   USER_COLUMNS_ARR
 } from '../../utils/constants';
 import LocalSearchInput from './LocalSearchInput';
+import Checkbox from '../shared/Checkbox';
 
 const TableSettings = () => {
   const selectedColumns = useSelector(selectSelectedColumns);
   const dispatch = useDispatch<AppDispatch>();
-
   const handleColumnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
+
     const updatedColumns = checked
       ? [...selectedColumns, name]
       : selectedColumns.filter((column) => column !== name);
@@ -37,7 +38,7 @@ const TableSettings = () => {
       <ul
         tabIndex={0}
         className="p-2 menu dropdown-content z-[1] text-darkGray
-          bg-base-100 w-[14.25rem] rounded-xl mt-[.44rem]
+          bg-base-100 w-[14.25rem] rounded-xl mt-[.44rem] leading-5
           border border-light shadow-m normal-case font-normal text-[.8125rem]">
         <LocalSearchInput />
 
@@ -45,21 +46,18 @@ const TableSettings = () => {
           const disabledForSelection = DISABLED_FOR_SELECTION_COLUMNS.includes(
             column.id
           );
+          const isChecked =
+            disabledForSelection || selectedColumns.includes(column.id);
 
           return (
-            <li key={column.id}>
-              <label className="cursor-pointer flex items-center justify-between h-8">
-                <span className="text-black leading-5">{column.label}</span>
-                <input
-                  disabled={disabledForSelection}
-                  onChange={handleColumnChange}
-                  name={column.id}
-                  type="checkbox"
-                  checked={
-                    disabledForSelection || selectedColumns.includes(column.id)
-                  }
-                />
-              </label>
+            <li className="cursor-pointer h-8" key={column.id}>
+              <Checkbox
+                label={column.label}
+                id={column.id}
+                isChecked={isChecked}
+                onChange={handleColumnChange}
+                disabled={disabledForSelection}
+              />
             </li>
           );
         })}

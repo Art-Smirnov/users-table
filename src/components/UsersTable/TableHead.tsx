@@ -9,7 +9,7 @@ const TableHead = () => {
 
   return (
     <thead className="bg-lightSecond text-[0.625rem] font-semibold">
-      <tr className="uppercase bg-lightSecond text-gray leading-3 tracking-[.0125rem]">
+      <tr className="uppercase bg-lightSecond text-gray tracking-[.0125rem]">
         <th className="h-7 p-0 bg-lightSecond">
           <div className="px-2 py-[0.38rem] h-full border-r border-r-light">
             full Name

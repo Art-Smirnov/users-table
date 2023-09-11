@@ -54,7 +54,7 @@ const TableSettings = () => {
             disabledForSelection || selectedColumns.includes(column.id);
 
           return (
-            <li className="cursor-pointer h-8" key={column.id}>
+            <li className="cursor-pointer h-[1.93rem]" key={column.id}>
               <Checkbox
                 label={column.label}
                 id={column.id}

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 // @ts-ignore
 import { ReactComponent as SettingsIcon } from '../../icons/settings.svg';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,15 +15,19 @@ import Checkbox from '../shared/Checkbox';
 const TableSettings = () => {
   const selectedColumns = useSelector(selectSelectedColumns);
   const dispatch = useDispatch<AppDispatch>();
-  const handleColumnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
 
-    const updatedColumns = checked
-      ? [...selectedColumns, name]
-      : selectedColumns.filter((column) => column !== name);
+  const handleColumnChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, checked } = e.target;
 
-    dispatch(updateSelectedColumns(updatedColumns));
-  };
+      const updatedColumns = checked
+        ? [...selectedColumns, name]
+        : selectedColumns.filter((column) => column !== name);
+
+      dispatch(updateSelectedColumns(updatedColumns));
+    },
+    [selectedColumns, dispatch]
+  );
 
   return (
     <div

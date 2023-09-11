@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 // @ts-ignore
 import { ReactComponent as LoaderIcon } from '../../icons/loader.svg';
 // @ts-ignore
@@ -51,4 +51,4 @@ const Banner: React.FC<BannerProps> = ({ type }) => {
   );
 };
 
-export default Banner;
+export default memo(Banner);

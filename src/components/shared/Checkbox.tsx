@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, { InputHTMLAttributes, memo } from 'react';
 // @ts-ignore
 import { ReactComponent as CheckIcon } from '../../icons/check.svg';
 
@@ -32,4 +32,4 @@ const Checkbox: React.FC<CheckboxProps> = ({
   );
 };
 
-export default Checkbox;
+export default memo(Checkbox);

@@ -6,6 +6,7 @@ import {
   selectIsLoading
 } from '../../store/users/usersSelectors';
 import Banner from './Banner';
+import { memo } from 'react';
 
 const Table = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -33,4 +34,4 @@ const Table = () => {
   );
 };
 
-export default Table;
+export default memo(Table);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import UserInput from '../shared/UserInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';
@@ -21,4 +21,4 @@ const LocalSearchInput = () => {
   );
 };
 
-export default LocalSearchInput;
+export default memo(LocalSearchInput);

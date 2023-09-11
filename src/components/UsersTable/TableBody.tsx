@@ -2,6 +2,7 @@
 import { useSelector } from 'react-redux';
 import { selectFilteredUsers } from '../../store/users/usersSelectors';
 import UserColumns from './UserColumns';
+import { memo } from 'react';
 
 const TableBody = () => {
   const users = useSelector(selectFilteredUsers);
@@ -49,4 +50,4 @@ const TableBody = () => {
   );
 };
 
-export default TableBody;
+export default memo(TableBody);

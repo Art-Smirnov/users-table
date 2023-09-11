@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 // @ts-ignore
 import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,17 +16,21 @@ const ItemsPerPageBtn = () => {
   const limit = useSelector(selectLimit);
   const query = useSelector(selectServerSearchQuery);
 
-  const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newLimit = Number(event.target.value);
+  const handleOptionChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const newLimit = Number(event.target.value);
 
-    dispatch(fetchUsersThunk({ query: query, limit: newLimit ?? 10, skip: 0 }));
-    // setLimit(newLimit);
+      dispatch(
+        fetchUsersThunk({ query: query, limit: newLimit ?? 10, skip: 0 })
+      );
 
-    const elem = document.activeElement as HTMLElement;
-    if (elem) {
-      elem?.blur();
-    }
-  };
+      const elem = document.activeElement as HTMLElement;
+      if (elem) {
+        elem?.blur();
+      }
+    },
+    [dispatch, query]
+  );
 
   return (
     <div>
@@ -67,4 +71,4 @@ const ItemsPerPageBtn = () => {
   );
 };
 
-export default ItemsPerPageBtn;
+export default memo(ItemsPerPageBtn);

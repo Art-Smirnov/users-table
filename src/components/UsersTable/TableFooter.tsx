@@ -1,5 +1,6 @@
 import ItemsPerPageBtn from './ItemsPerPageBtn';
 import Pagination from './Pagination';
+import { memo } from 'react';
 
 const TableFooter = () => {
   return (
@@ -10,4 +11,4 @@ const TableFooter = () => {
   );
 };
 
-export default TableFooter;
+export default memo(TableFooter);

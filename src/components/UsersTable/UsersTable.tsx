@@ -1,5 +1,6 @@
 import TableFooter from './TableFooter';
 import Table from './Table';
+import { memo } from 'react';
 
 const UsersTable = () => {
   return (
@@ -14,4 +15,4 @@ const UsersTable = () => {
   );
 };
 
-export default UsersTable;
+export default memo(UsersTable);

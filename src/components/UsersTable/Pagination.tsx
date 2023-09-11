@@ -21,7 +21,6 @@ const Pagination = () => {
   const [page, setPage] = useState<number | string>(1);
 
   const totalPages = Math.ceil(total! / limit!);
-  // const skip = +page * limit! - limit!;
   const skip = useSelector(selectSkip);
 
   useEffect(() => {

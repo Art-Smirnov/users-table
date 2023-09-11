@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { UserType } from '../../types/usersTypes';
 import { useSelector } from 'react-redux';
 import { selectSortedSelectedColumns } from '../../store/users/usersSelectors';
@@ -59,4 +59,4 @@ const UserColumns: React.FC<UserColumnsProps> = ({ user }) => {
   );
 };
 
-export default UserColumns;
+export default memo(UserColumns);

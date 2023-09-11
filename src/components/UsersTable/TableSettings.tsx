@@ -38,6 +38,7 @@ const TableSettings = () => {
           p-1 rounded-full">
         <SettingsIcon />
       </label>
+
       <ul
         tabIndex={0}
         className="p-2 menu dropdown-content z-[1] text-darkGray

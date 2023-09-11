@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/users-table/static/css/main.4297d785.css",
-    "main.js": "/users-table/static/js/main.01bbe0cc.js",
+    "main.css": "/users-table/static/css/main.a0bebfd1.css",
+    "main.js": "/users-table/static/js/main.3752cb49.js",
     "static/media/loader.svg": "/users-table/static/media/loader.056269fb3d786b14a1c3caf3c7063359.svg",
     "static/media/settings.svg": "/users-table/static/media/settings.70c2e28bd477fa395bb5197cb860f168.svg",
     "static/media/question.svg": "/users-table/static/media/question.568b843909c7ab8b4d3be8ff73eceb4c.svg",
@@ -14,11 +14,11 @@
     "static/media/chevron.svg": "/users-table/static/media/chevron.41ed327c08e815da5b8b4b68c4fc7b16.svg",
     "static/media/exclamation.svg": "/users-table/static/media/exclamation.90c57f6ca550a9aaaba65392aad2c7d0.svg",
     "static/media/arrow.svg": "/users-table/static/media/arrow.31033c57a03c860898054259009b4c44.svg",
-    "main.4297d785.css.map": "/users-table/static/css/main.4297d785.css.map",
-    "main.01bbe0cc.js.map": "/users-table/static/js/main.01bbe0cc.js.map"
+    "main.a0bebfd1.css.map": "/users-table/static/css/main.a0bebfd1.css.map",
+    "main.3752cb49.js.map": "/users-table/static/js/main.3752cb49.js.map"
   },
   "entrypoints": [
-    "static/css/main.4297d785.css",
-    "static/js/main.01bbe0cc.js"
+    "static/css/main.a0bebfd1.css",
+    "static/js/main.3752cb49.js"
   ]
 }

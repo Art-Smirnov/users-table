@@ -30,7 +30,7 @@ const TableHead = () => {
           );
         })}
 
-        <th className="p-0 w-[2.125rem]">
+        <th className="p-0 w-[2.125rem] bg-lightSecond">
           <TableSettings />
         </th>
       </tr>

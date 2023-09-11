@@ -17,6 +17,7 @@ const initialState: UsersDataType = {
   skip: null,
   total: null,
   selectedColumns: initialUserColumns,
+  serverSearchQuery: '',
   clientSearchQuery: ''
 };
 
@@ -24,6 +25,9 @@ const userSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
+    setServerSearchQuery: (state, action) => {
+      state.serverSearchQuery = action.payload;
+    },
     setClientSearchQuery: (state, action) => {
       state.clientSearchQuery = action.payload;
     },
@@ -55,7 +59,10 @@ const userSlice = createSlice({
   }
 });
 
-export const { updateSelectedColumns, setClientSearchQuery } =
-  userSlice.actions;
+export const {
+  updateSelectedColumns,
+  setClientSearchQuery,
+  setServerSearchQuery
+} = userSlice.actions;
 
 export default userSlice.reducer;

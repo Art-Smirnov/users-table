@@ -6,6 +6,7 @@ import { ReactComponent as ChevronIcon } from '../../icons/chevron.svg';
 import { ReactComponent as LastChevronIcon } from '../../icons/lastChevron.svg';
 import {
   selectLimit,
+  selectServerSearchQuery,
   selectSkip,
   selectTotalUsers
 } from '../../store/users/usersSelectors';
@@ -14,6 +15,7 @@ import { fetchUsersThunk } from '../../store/users/usersThunks';
 
 const Pagination = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const query = useSelector(selectServerSearchQuery);
   const limit = useSelector(selectLimit);
   const total = useSelector(selectTotalUsers);
   const [page, setPage] = useState<number | string>(1);
@@ -29,8 +31,13 @@ const Pagination = () => {
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setPage(newPage);
+
       dispatch(
-        fetchUsersThunk({ skip: (newPage - 1) * limit!, limit: limit! })
+        fetchUsersThunk({
+          query: query,
+          skip: (newPage - 1) * limit!,
+          limit: limit!
+        })
       );
     }
   };

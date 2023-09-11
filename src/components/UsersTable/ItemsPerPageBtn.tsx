@@ -1,21 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 // @ts-ignore
 import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { ITEMS_PER_PAGE_SCHEMA } from '../../utils/constants';
 import Checkbox from '../shared/Checkbox';
 import { fetchUsersThunk } from '../../store/users/usersThunks';
+import {
+  selectLimit,
+  selectServerSearchQuery
+} from '../../store/users/usersSelectors';
 
 const ItemsPerPageBtn = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [limit, setLimit] = useState(10);
+  const limit = useSelector(selectLimit);
+  const query = useSelector(selectServerSearchQuery);
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newLimit = Number(event.target.value);
 
-    dispatch(fetchUsersThunk({ limit: newLimit ?? 10, skip: 0 }));
-    setLimit(newLimit);
+    dispatch(fetchUsersThunk({ query: query, limit: newLimit ?? 10, skip: 0 }));
+    // setLimit(newLimit);
 
     const elem = document.activeElement as HTMLElement;
     if (elem) {
@@ -30,7 +35,7 @@ const ItemsPerPageBtn = () => {
           tabIndex={0}
           className="btn btn-sm text-[0.8125rem] bg-darkerGray border-light
             pl-3 py-2 pr-3 font-normal h-9 w-[5.5rem] flex justify-between text-gray">
-          {limit}
+          {Math.max(limit!, 10)}
           <ArrowIcon />
         </label>
         <ul

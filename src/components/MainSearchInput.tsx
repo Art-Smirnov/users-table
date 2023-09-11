@@ -1,13 +1,15 @@
-import React, { memo, useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { memo, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsersThunk } from '../store/users/usersThunks';
 import { AppDispatch } from '../store/store';
 import UserInput from './shared/UserInput';
-import debounce from 'lodash/debounce'; // Import debounce from lodash
+import debounce from 'lodash/debounce';
+import { setServerSearchQuery } from '../store/users/usersSlice';
+import { selectServerSearchQuery } from '../store/users/usersSelectors';
 
 const MainSearchInput = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [query, setQuery] = useState('');
+  const query = useSelector(selectServerSearchQuery);
 
   const handleSearch = useCallback(
     debounce((newQuery: string) => {
@@ -23,10 +25,10 @@ const MainSearchInput = () => {
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const newQuery = event.target.value;
-      setQuery(newQuery);
+      dispatch(setServerSearchQuery(newQuery));
       handleSearch(newQuery);
     },
-    [handleSearch]
+    [dispatch, handleSearch]
   );
 
   return <UserInput className="mb-3" value={query} onChange={handleChange} />;

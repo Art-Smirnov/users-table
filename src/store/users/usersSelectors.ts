@@ -30,6 +30,8 @@ export const selectSortedSelectedColumns = createSelector(
   }
 );
 
+export const selectServerSearchQuery = (state: RootState) =>
+  state.users.serverSearchQuery;
 export const selectClientSearchQuery = (state: RootState) =>
   state.users.clientSearchQuery;
 

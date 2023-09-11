@@ -1,6 +1,6 @@
+import { memo } from 'react';
 import TableFooter from './TableFooter';
 import Table from './Table';
-import { memo } from 'react';
 
 const UsersTable = () => {
   return (

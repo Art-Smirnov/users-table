@@ -1,6 +1,6 @@
+import { memo } from 'react';
 import ItemsPerPageBtn from './ItemsPerPageBtn';
 import Pagination from './Pagination';
-import { memo } from 'react';
 
 const TableFooter = () => {
   return (

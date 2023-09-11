@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import TableBody from './TableBody';
 import TableHead from './TableHead';
 import { useSelector } from 'react-redux';
@@ -6,7 +7,6 @@ import {
   selectIsLoading
 } from '../../store/users/usersSelectors';
 import Banner from './Banner';
-import { memo } from 'react';
 
 const Table = () => {
   const isLoading = useSelector(selectIsLoading);

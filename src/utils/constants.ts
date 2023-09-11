@@ -40,4 +40,13 @@ export const USER_COLUMNS_ARR_SCHEMA: UserColumn[] = [
 
 export const DISABLED_FOR_SELECTION_COLUMNS = ['fullName', 'username', 'email'];
 
+export const DEFAULT_SELECTED_COLUMNS = [
+  'birthday',
+  'gender',
+  'email',
+  'phone',
+  'username',
+  'generalInfo'
+];
+
 export const ITEMS_PER_PAGE_SCHEMA = [10, 20, 50];

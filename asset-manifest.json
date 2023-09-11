@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/users-table/static/css/main.0b505c2a.css",
+    "main.js": "/users-table/static/js/main.3dc1ca62.js",
+    "static/media/loader.svg": "/users-table/static/media/loader.056269fb3d786b14a1c3caf3c7063359.svg",
+    "static/media/settings.svg": "/users-table/static/media/settings.70c2e28bd477fa395bb5197cb860f168.svg",
+    "static/media/question.svg": "/users-table/static/media/question.568b843909c7ab8b4d3be8ff73eceb4c.svg",
+    "index.html": "/users-table/index.html",
+    "static/media/female.svg": "/users-table/static/media/female.c55275c8a1020e1ee1c185d446536a74.svg",
+    "static/media/search.svg": "/users-table/static/media/search.5a0dfe61407292aca8ab4fd77073d5be.svg",
+    "static/media/male.svg": "/users-table/static/media/male.7152489b6b9b5c0773f9155c3c158286.svg",
+    "static/media/lastChevron.svg": "/users-table/static/media/lastChevron.10921b3e05317fc5e72799f9ae412d6e.svg",
+    "static/media/check.svg": "/users-table/static/media/check.6824491deba6a5dadb5308dc2d4f10c1.svg",
+    "static/media/chevron.svg": "/users-table/static/media/chevron.41ed327c08e815da5b8b4b68c4fc7b16.svg",
+    "static/media/exclamation.svg": "/users-table/static/media/exclamation.90c57f6ca550a9aaaba65392aad2c7d0.svg",
+    "static/media/arrow.svg": "/users-table/static/media/arrow.31033c57a03c860898054259009b4c44.svg",
+    "main.0b505c2a.css.map": "/users-table/static/css/main.0b505c2a.css.map",
+    "main.3dc1ca62.js.map": "/users-table/static/js/main.3dc1ca62.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0b505c2a.css",
+    "static/js/main.3dc1ca62.js"
+  ]
+}

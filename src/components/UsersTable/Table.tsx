@@ -26,7 +26,7 @@ const Table = () => {
 
   return (
     <table
-      className="table table-pin-rows table-pin-cols
+      className="table table-pin-rows table-pin-cols bg-white
         border-b border-b-light">
       <TableHead />
       <TableBody />

@@ -53,7 +53,6 @@ const userSlice = createSlice({
         state.loading = 'succeeded';
         state.users = action.payload.users.map(refactorUsersData);
         state.total = action.payload.total;
-        // state.limit = action.payload.limit;
         state.skip = action.payload.skip;
       })
       .addCase(fetchUsersThunk.rejected, (state, action) => {

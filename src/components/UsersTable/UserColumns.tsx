@@ -15,8 +15,9 @@ const UserColumns: React.FC<UserColumnsProps> = ({ user }) => {
 
   const getColumnText = (column: ValidColumns): React.ReactNode => {
     const isGender = column === 'gender';
+    const isDomain = column === 'domain';
 
-    if (column === 'domain') {
+    if (isDomain) {
       return (
         <a
           target="_blank"

@@ -5,17 +5,22 @@ import { AppDispatch } from '../store/store';
 import UserInput from './shared/UserInput';
 import debounce from 'lodash/debounce';
 import { setServerSearchQuery } from '../store/users/usersSlice';
-import { selectServerSearchQuery } from '../store/users/usersSelectors';
+import {
+  selectLimit,
+  selectServerSearchQuery
+} from '../store/users/usersSelectors';
 
 const MainSearchInput = () => {
   const dispatch = useDispatch<AppDispatch>();
   const query = useSelector(selectServerSearchQuery);
+  const limit = useSelector(selectLimit);
 
   const handleSearch = useCallback(
-    debounce((newQuery: string) => {
+    debounce((newQuery: string, limit: number) => {
       dispatch(
         fetchUsersThunk({
-          query: newQuery
+          query: newQuery,
+          limit: limit
         })
       );
     }, 300),
@@ -26,9 +31,9 @@ const MainSearchInput = () => {
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const newQuery = event.target.value;
       dispatch(setServerSearchQuery(newQuery));
-      handleSearch(newQuery);
+      handleSearch(newQuery, limit!);
     },
-    [dispatch, handleSearch]
+    [dispatch, handleSearch, limit]
   );
 
   return <UserInput className="mb-3" value={query} onChange={handleChange} />;

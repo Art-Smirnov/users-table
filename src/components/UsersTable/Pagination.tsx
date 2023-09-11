@@ -50,11 +50,10 @@ const Pagination = () => {
     }
   };
 
-  const firstPage = page <= 1;
-  const lastPage = page === totalPages;
-
   const firstSeenNumber = Math.min(skip! + 1, total!);
   const lastSeenNumber = Math.min(skip! + limit!, total!);
+  const firstPage = firstSeenNumber === 1;
+  const lastPage = lastSeenNumber === total;
 
   return (
     <div className="flex items-center gap-3">

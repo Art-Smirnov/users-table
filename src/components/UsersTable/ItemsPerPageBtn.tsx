@@ -9,6 +9,7 @@ import {
   selectLimit,
   selectServerSearchQuery
 } from '../../store/users/usersSelectors';
+import { setLimit } from '../../store/users/usersSlice';
 
 const ItemsPerPageBtn = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,7 +19,7 @@ const ItemsPerPageBtn = () => {
   const handleOptionChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const newLimit = Number(event.target.value);
-
+      dispatch(setLimit(newLimit));
       dispatch(
         fetchUsersThunk({ query: query, limit: newLimit ?? 10, skip: 0 })
       );

@@ -1,4 +1,3 @@
-// @ts-ignore
 import { ReactComponent as SearchImage } from '../../icons/search.svg';
 import React, { memo } from 'react';
 

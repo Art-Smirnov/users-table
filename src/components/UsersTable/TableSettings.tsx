@@ -1,5 +1,4 @@
 import React, { memo, useCallback } from 'react';
-// @ts-ignore
 import { ReactComponent as SettingsIcon } from '../../icons/settings.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSelectedColumns } from '../../store/users/usersSelectors';
@@ -54,7 +53,7 @@ const TableSettings = () => {
             disabledForSelection || selectedColumns.includes(column.id);
 
           return (
-            <li className="cursor-pointer h-[1.93rem]" key={column.id}>
+            <li className="cursor-pointer h-[31px]" key={column.id}>
               <Checkbox
                 label={column.label}
                 id={column.id}

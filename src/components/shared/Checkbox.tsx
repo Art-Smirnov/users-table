@@ -1,5 +1,4 @@
 import React, { InputHTMLAttributes, memo } from 'react';
-// @ts-ignore
 import { ReactComponent as CheckIcon } from '../../icons/check.svg';
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {

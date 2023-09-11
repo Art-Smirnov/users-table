@@ -1,9 +1,6 @@
 import React, { memo } from 'react';
-// @ts-ignore
 import { ReactComponent as LoaderIcon } from '../../icons/loader.svg';
-// @ts-ignore
 import { ReactComponent as ExclamationIcon } from '../../icons/exclamation.svg';
-// @ts-ignore
 import { ReactComponent as QuestionIcon } from '../../icons/question.svg';
 
 interface BannerProps {

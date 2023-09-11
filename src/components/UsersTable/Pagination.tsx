@@ -1,8 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// @ts-ignore
 import { ReactComponent as ChevronIcon } from '../../icons/chevron.svg';
-// @ts-ignore
 import { ReactComponent as LastChevronIcon } from '../../icons/lastChevron.svg';
 import {
   selectLimit,

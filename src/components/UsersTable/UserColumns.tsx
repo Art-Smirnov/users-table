@@ -3,9 +3,7 @@ import { UserType } from '../../types/usersTypes';
 import { useSelector } from 'react-redux';
 import { selectSortedSelectedColumns } from '../../store/users/usersSelectors';
 import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter';
-// @ts-ignore
 import { ReactComponent as MaleIcon } from '../../icons/male.svg';
-// @ts-ignore
 import { ReactComponent as FemaleIcon } from '../../icons/female.svg';
 interface UserColumnsProps {
   user: UserType;

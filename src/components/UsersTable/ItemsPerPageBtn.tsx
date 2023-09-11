@@ -1,5 +1,4 @@
 import React, { memo, useCallback } from 'react';
-// @ts-ignore
 import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';

@@ -39,7 +39,7 @@ const ItemsPerPageBtn = () => {
           tabIndex={0}
           className="btn btn-sm text-[0.8125rem] bg-darkerGray border-light
             pl-3 py-2 pr-3 font-normal h-9 w-[5.5rem] flex justify-between text-gray">
-          {Math.max(limit!, 10)}
+          {limit}
           <ArrowIcon />
         </label>
         <ul

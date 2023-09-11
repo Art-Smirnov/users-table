@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as ChevronIcon } from '../../icons/chevron.svg';
 import { ReactComponent as LastChevronIcon } from '../../icons/lastChevron.svg';
 import {
+  selectIsLoading,
   selectLimit,
   selectServerSearchQuery,
   selectSkip,
@@ -20,6 +21,8 @@ const Pagination = () => {
 
   const totalPages = Math.ceil(total! / limit!);
   const skip = useSelector(selectSkip);
+
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     setPage(1);
@@ -54,6 +57,7 @@ const Pagination = () => {
   const lastSeenNumber = Math.min(skip! + limit!, total!);
   const firstPage = firstSeenNumber === 1;
   const lastPage = lastSeenNumber === total;
+  const isDisabledButton = isLoading === 'pending';
 
   return (
     <div className="flex items-center gap-3">
@@ -62,13 +66,13 @@ const Pagination = () => {
       </div>
       <div className="flex gap-[.12rem]">
         <button
-          disabled={firstPage}
+          disabled={firstPage || isDisabledButton}
           onClick={() => handlePageChange(1)}
           className="btn btn-sm h-9 bg-transparent border-transparent p-2 disabled:bg-transparent disabled:opacity-30">
           <LastChevronIcon className="rotate-180" />
         </button>
         <button
-          disabled={firstPage}
+          disabled={firstPage || isDisabledButton}
           onClick={() => handlePageChange(+page - 1)}
           className="btn btn-sm h-9 bg-transparent border-transparent p-2 disabled:bg-transparent disabled:opacity-30">
           <ChevronIcon className="rotate-180" />
@@ -81,13 +85,13 @@ const Pagination = () => {
           className="btn btn-sm text-[0.8125rem] bg-darkerGray border-light font-normal h-9 w-16 text-gray"
         />
         <button
-          disabled={lastPage}
+          disabled={lastPage || isDisabledButton}
           onClick={() => handlePageChange(+page + 1)}
           className="btn btn-sm h-9 bg-transparent border-transparent p-2 disabled:bg-transparent disabled:opacity-30">
           <ChevronIcon />
         </button>
         <button
-          disabled={lastPage}
+          disabled={lastPage || isDisabledButton}
           onClick={() => handlePageChange(totalPages)}
           className="btn btn-sm h-9 bg-transparent border-transparent p-2 disabled:bg-transparent disabled:opacity-50">
           <LastChevronIcon />
